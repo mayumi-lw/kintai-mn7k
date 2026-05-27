@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>勤怠システム（クロッシオン）マニュアル</title>
+<style>
+  :root{
+    --navy:#0B3C5D;       /* 濃紺・見出し */
+    --blue:#1CA9D6;       /* メイン水色 */
+    --blue-d:#0B6E8F;     /* 濃い青 */
+    --blue-bg:#EAF6FB;    /* 薄い青背景 */
+    --amber:#C8851A;      /* 注意ボックス枠（琥珀） */
+    --amber-bg:#FBF3E0;   /* 注意ボックス背景 */
+    --amber-tx:#7A4E08;   /* 注意ボックス見出し文字 */
+    --ink:#22323C;        /* 本文 */
+    --soft:#5B7180;       /* 補助テキスト */
+    --line:#D7E6EE;       /* 罫線 */
+    --card:#FFFFFF;
+    --bg:#F4FAFC;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px 80px;}
+
+  /* ===== ヘッダー ===== */
+  header{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--blue-d) 55%,var(--blue) 100%);
+    color:#fff;padding:46px 20px 40px;text-align:center;position:relative;overflow:hidden;
+  }
+  header::after{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 80% -20%,rgba(255,255,255,.18),transparent 60%);
+  }
+  header h1{font-size:1.7rem;letter-spacing:.04em;position:relative;}
+  header p{margin-top:10px;font-size:1rem;opacity:.92;position:relative;}
+  .tag{
+    display:inline-block;margin-bottom:14px;padding:4px 16px;border-radius:999px;
+    background:rgba(255,255,255,.16);font-size:.8rem;letter-spacing:.18em;position:relative;
+  }
+
+  /* ===== ナビ（戻る） ===== */
+  .crumb{margin:22px 0 6px;font-size:.92rem;color:var(--soft);}
+  .crumb a{color:var(--blue-d);text-decoration:none;font-weight:600;}
+  .crumb a:hover{text-decoration:underline;}
+
+  /* ===== セクション見出し ===== */
+  h2.sec{
+    font-size:1.28rem;color:var(--navy);margin:34px 0 16px;padding-bottom:8px;
+    border-bottom:3px solid var(--blue);display:flex;align-items:center;gap:10px;
+  }
+  h2.sec .n{
+    background:var(--blue);color:#fff;font-size:.95rem;width:30px;height:30px;
+    border-radius:8px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;
+  }
+  h3{font-size:1.08rem;color:var(--blue-d);margin:24px 0 10px;}
+  p{margin:10px 0;}
+  .lead{font-size:1.02rem;color:var(--ink);}
+
+  /* ===== カード（選択ボタン） ===== */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:26px 0;}
+  @media(max-width:600px){.cards{grid-template-columns:1fr;}}
+  .card{
+    display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:26px 24px;text-decoration:none;color:var(--ink);transition:.18s;
+    box-shadow:0 2px 10px rgba(11,60,93,.05);position:relative;overflow:hidden;
+  }
+  .card::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--blue);
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(11,60,93,.14);border-color:var(--blue);}
+  .card .ico{font-size:1.7rem;}
+  .card .t{font-size:1.18rem;font-weight:700;color:var(--navy);margin:8px 0 4px;}
+  .card .d{font-size:.92rem;color:var(--soft);line-height:1.7;}
+
+  /* ===== テーブル ===== */
+  table{width:100%;border-collapse:collapse;margin:16px 0;background:var(--card);
+    border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(11,60,93,.05);}
+  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);font-size:.96rem;vertical-align:top;}
+  th{background:var(--blue);color:#fff;font-weight:700;}
+  tr:last-child td{border-bottom:none;}
+  td.k{background:var(--blue-bg);color:var(--blue-d);font-weight:700;white-space:nowrap;}
+  .hl{color:#C0392B;font-weight:700;}
+
+  /* ===== 注意ボックス（琥珀） ===== */
+  .note{
+    background:var(--amber-bg);border:2px solid var(--amber);border-radius:14px;
+    padding:18px 20px;margin:22px 0;
+  }
+  .note .h{font-weight:700;color:var(--amber-tx);font-size:1.05rem;margin-bottom:6px;display:flex;gap:8px;align-items:center;}
+  .note .h::before{content:"⚠";}
+  .note p{margin:6px 0;font-size:.96rem;}
+
+  /* ===== マニュアル項目 ===== */
+  .man{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    margin:16px 0;overflow:hidden;box-shadow:0 2px 8px rgba(11,60,93,.05);
+  }
+  .man .head{
+    background:var(--blue-bg);padding:14px 18px;font-weight:700;color:var(--navy);
+    font-size:1.05rem;border-left:6px solid var(--blue);
+  }
+  .man .body{padding:16px 18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;
+    text-decoration:none;padding:10px 20px;border-radius:10px;font-weight:700;font-size:.95rem;transition:.15s;
+  }
+  .btn:hover{background:var(--blue-d);}
+  .btn.ghost{background:#fff;color:var(--blue-d);border:2px solid var(--blue);}
+  .btn.ghost:hover{background:var(--blue-bg);}
+  .vid{
+    flex:1 1 100%;margin-top:6px;padding:14px;border:2px dashed var(--line);border-radius:10px;
+    color:var(--soft);font-size:.92rem;text-align:center;background:#FBFDFE;
+  }
+  .vid.ready{border-style:solid;border-color:var(--blue);padding:0;background:#000;}
+  .vid.ready iframe{width:100%;aspect-ratio:16/9;display:block;border:0;border-radius:8px;}
+
+  /* ===== ルールバッジ ===== */
+  .rule{
+    display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);
+    border-left:6px solid var(--blue);border-radius:12px;padding:16px 18px;margin:18px 0;
+  }
+  .rule .big{font-size:1.5rem;flex:0 0 auto;}
+  .rule b{color:var(--navy);}
+
+  /* ===== ページ切り替え ===== */
+  .page{display:none;}
+  .page.active{display:block;animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+  footer{text-align:center;color:var(--soft);font-size:.86rem;margin-top:50px;padding-top:24px;border-top:1px solid var(--line);}
+  .contact{background:var(--navy);color:#fff;border-radius:14px;padding:18px 22px;margin:28px 0;text-align:center;}
+  .contact b{font-size:1.1rem;}
+</style>
+</head>
+<body>
+<header>
+  <span class="tag">勤怠システム</span>
+  <h1>クロッシオン　マニュアル</h1>
+  <p>残業・有給などの申請が、紙からWeb申請に変わります</p>
+</header>
+
+<div class="wrap">
+
+<!-- ============ トップページ ============ -->
+<section id="top" class="page active">
+  <p class="crumb">ホーム</p>
+  <p class="lead">クロッシオンの操作マニュアルのページです。ご自分の立場に合わせて、下から進んでください。各マニュアルには、操作の動画も順次追加していきます。</p>
+
+  <div class="cards">
+    <a class="card" href="#" onclick="go('staff');return false;">
+      <div class="ico">🧑‍💼</div>
+      <div class="t">職員の方</div>
+      <div class="d">申請をする方はこちら（常勤・パート）</div>
+    </a>
+    <a class="card" href="#" onclick="go('admin');return false;">
+      <div class="ico">✅</div>
+      <div class="t">管理者の方</div>
+      <div class="d">申請を承認する方はこちら</div>
+    </a>
+  </div>
+
+  <h2 class="sec"><span class="n">1</span>変わること・変わらないこと</h2>
+  <p>変わるのは「申請の方法」です。打刻の方法は、これまでどおりICカードのままです。</p>
+  <table>
+    <tr><th style="width:34%">項目</th><th>内容</th></tr>
+    <tr><td class="k">申請（残業・有給など）</td><td>紙での提出 → クロッシオンでのWeb申請に変わります</td></tr>
+    <tr><td class="k">打刻（出勤・退勤）</td><td>これまでどおりICカードで打刻します（方法は変わりません）</td></tr>
+  </table>
+
+  <h2 class="sec"><span class="n">2</span>いつから変わるか</h2>
+  <p>次のスケジュールで、少しずつ切り替えていきます。あわてず慣れていきましょう。</p>
+  <table>
+    <tr><th style="width:22%">時期</th><th>内容</th></tr>
+    <tr><td class="k">6月1日〜</td><td>Web申請を開始します。<b>紙とWebの両方で申請</b>してください。Web申請に慣れていただく期間です。（給与への反映は<b>紙</b>）</td></tr>
+    <tr><td class="k">7月1日〜</td><td><b>紙とWebの両方で申請</b>してください。（給与への反映は<b>Web</b>）Web申請に一本化できるよう、紙とWebで誤差がないようにしてください。</td></tr>
+    <tr><td class="k">8月1日〜</td><td class="hl">Web申請に一本化します。打刻も新しい打刻機だけになります。</td></tr>
+  </table>
+
+  <div class="note">
+    <div class="h">打刻について（とても大切です）</div>
+    <p>今は「旧の打刻機」と「新しい打刻機」の2か所に打刻していただいています。</p>
+    <p><b>6月・7月</b>の間は、これまでどおり<b>2か所とも打刻</b>してください。</p>
+    <p><b>8月1日から</b>は、<b>新しい打刻機だけ</b>に打刻します（旧の打刻機は使いません）。</p>
+  </div>
+
+  <h2 class="sec"><span class="n">3</span>申請のルール</h2>
+  <div class="rule">
+    <div class="big">📌</div>
+    <div><b>各種申請は、翌勤務日中までに行ってください。</b><br>申請漏れや混乱を防ぐためのお願いです。忘れないうちに、早めの申請を心がけましょう。</div>
+  </div>
+
+  <h2 class="sec"><span class="n">4</span>準備していただくこと</h2>
+  <p>Web申請には、ログインが必要です。次のものを総務課からお配りします。</p>
+  <table>
+    <tr><td class="k">ログインID</td><td>社員番号（6けた）</td></tr>
+    <tr><td class="k">パスワード</td><td>初回のパスワードをお配りします（初回ログイン後に変更が必要です）</td></tr>
+  </table>
+  <p>くわしい操作の方法は、下のボタンから自分のマニュアルをご覧ください。パソコンからも、スマートフォンからも申請できます。</p>
+
+  <div class="cards">
+    <a class="card" href="#" onclick="go('staff');return false;">
+      <div class="ico">🧑‍💼</div>
+      <div class="t">職員の方のマニュアル</div>
+      <div class="d">常勤・パートの申請方法はこちら</div>
+    </a>
+    <a class="card" href="#" onclick="go('admin');return false;">
+      <div class="ico">✅</div>
+      <div class="t">管理者の方のマニュアル</div>
+      <div class="d">承認の方法はこちら</div>
+    </a>
+  </div>
+
+  <div class="contact">
+    困ったときは　<b>総務課</b>　までお気軽にご相談ください
+  </div>
+</section>
+
+<!-- ============ 職員トップ ============ -->
+<section id="staff" class="page">
+  <p class="crumb"><a href="#" onclick="go('top');return false;">ホーム</a> ＞ 職員の方</p>
+  <h2 class="sec">職員の方（申請をする方）</h2>
+  <p class="lead">勤務の形態に合わせて、下から進んでください。</p>
+  <div class="cards">
+    <a class="card" href="#" onclick="go('joukin');return false;">
+      <div class="ico">🏢</div>
+      <div class="t">常勤（正社員）の方</div>
+      <div class="d">ログイン・有給・未打刻・残業・夏期/特休・遅刻早退</div>
+    </a>
+    <a class="card" href="#" onclick="go('part');return false;">
+      <div class="ico">🕒</div>
+      <div class="t">パートの方</div>
+      <div class="d">ログイン・有給・未打刻・パート勤務/残業</div>
+    </a>
+  </div>
+  <div class="rule">
+    <div class="big">📌</div>
+    <div><b>各種申請は、翌勤務日中までに行ってください。</b><br>申請漏れや混乱を防ぐためのお願いです。</div>
+  </div>
+</section>
+
+<!-- ============ 常勤 ============ -->
+<section id="joukin" class="page">
+  <p class="crumb"><a href="#" onclick="go('top');return false;">ホーム</a> ＞ <a href="#" onclick="go('staff');return false;">職員の方</a> ＞ 常勤の方</p>
+  <h2 class="sec">常勤（正社員）の方</h2>
+  <p class="lead">やりたいことのマニュアルを開いてください。各マニュアルには、操作の動画も順次追加していきます。</p>
+
+  <div class="rule">
+    <div class="big">📌</div>
+    <div><b>各種申請は、翌勤務日中までに。</b>申請漏れ・混乱を防ぐためのお願いです。</div>
+  </div>
+
+  <!-- 各マニュアル: data-pdf にPDFファイル名、data-yt にYouTube IDを入れると動画が出ます -->
+  <div id="joukin-list"></div>
+</section>
+
+<!-- ============ パート ============ -->
+<section id="part" class="page">
+  <p class="crumb"><a href="#" onclick="go('top');return false;">ホーム</a> ＞ <a href="#" onclick="go('staff');return false;">職員の方</a> ＞ パートの方</p>
+  <h2 class="sec">パートの方</h2>
+  <p class="lead">やりたいことのマニュアルを開いてください。各マニュアルには、操作の動画も順次追加していきます。</p>
+
+  <div class="rule">
+    <div class="big">📌</div>
+    <div><b>各種申請は、翌勤務日中までに。</b>申請漏れ・混乱を防ぐためのお願いです。</div>
+  </div>
+
+  <div id="part-list"></div>
+</section>
+
+<!-- ============ 管理者 ============ -->
+<section id="admin" class="page">
+  <p class="crumb"><a href="#" onclick="go('top');return false;">ホーム</a> ＞ 管理者の方</p>
+  <h2 class="sec">管理者の方（承認をする方）</h2>
+  <p class="lead">申請を承認する方のためのマニュアルです。</p>
+  <div class="note">
+    <div class="h">準備中です</div>
+    <p>承認の方法のマニュアルは、現在準備中です。でき次第こちらに掲載します。</p>
+  </div>
+  <p>職員の申請は、管理者のページに届きます。申請が届いたら承認をお願いします。承認されないと申請が確定しませんので、日々ページを確認するなど、こまめにご確認ください。確認方法については、追ってご連絡いたします。</p>
+</section>
+
+<footer>
+  上ヶ原病院　勤怠システム（クロッシオン）マニュアル<br>
+  お問い合わせ：総務課
+</footer>
+
+</div>
+
+<script>
+  // ===== マニュアル定義 =====
+  // pdf: 同じフォルダに置くPDFのファイル名 / yt: YouTube動画ID（空なら「準備中」表示）
+  const JOUKIN = [
+    {title:"① ログイン方法",            pdf:"login.pdf",     yt:""},
+    {title:"② 有給休暇の申請",          pdf:"yukyu.pdf",     yt:""},
+    {title:"③ 未打刻の申請",            pdf:"midakoku.pdf",  yt:""},
+    {title:"④ 残業の申請",              pdf:"zangyo.pdf",    yt:""},
+    {title:"⑤ 夏期・特休の申請",        pdf:"kaki.pdf",      yt:""},
+    {title:"⑥ 遅刻・早退の申請",        pdf:"chikoku.pdf",   yt:""},
+  ];
+  const PART = [
+    {title:"① ログイン方法",            pdf:"login.pdf",     yt:""},
+    {title:"② 有給休暇の申請",          pdf:"yukyu.pdf",     yt:""},
+    {title:"③ 未打刻の申請",            pdf:"midakoku.pdf",  yt:""},
+    {title:"④ パート勤務・残業の申請",  pdf:"part.pdf",      yt:""},
+  ];
+
+  function renderList(arr){
+    return arr.map(m=>{
+      const vid = m.yt
+        ? `<div class="vid ready"><iframe src="https://www.youtube.com/embed/${m.yt}" allowfullscreen></iframe></div>`
+        : `<div class="vid">🎬 操作動画は準備中です（公開までお待ちください）</div>`;
+      return `<div class="man">
+        <div class="head">${m.title}</div>
+        <div class="body">
+          <a class="btn" href="${m.pdf}" target="_blank">📄 マニュアルを開く</a>
+          <a class="btn ghost" href="${m.pdf}" download>⬇ ダウンロード</a>
+          ${vid}
+        </div>
+      </div>`;
+    }).join("");
+  }
+  document.getElementById("joukin-list").innerHTML = renderList(JOUKIN);
+  document.getElementById("part-list").innerHTML   = renderList(PART);
+
+  function go(id){
+    document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+</script>
+</body>
+</html>
