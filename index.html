@@ -74,6 +74,7 @@
     content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--blue);
   }
   .card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(11,60,93,.14);border-color:var(--blue);}
+  .card .ico{font-size:1.7rem;}
   .card .t{font-size:1.18rem;font-weight:700;color:var(--navy);margin:8px 0 4px;}
   .card .d{font-size:.92rem;color:var(--soft);line-height:1.7;}
 
@@ -105,6 +106,7 @@
     font-size:1.05rem;border-left:6px solid var(--blue);
   }
   .man .body{padding:16px 18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+  .man .desc{flex-basis:100%;margin:0 0 4px;color:#555;font-size:14px;}
   .btn{
     display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;
     text-decoration:none;padding:10px 20px;border-radius:10px;font-weight:700;font-size:.95rem;transition:.15s;
@@ -112,12 +114,9 @@
   .btn:hover{background:var(--blue-d);}
   .btn.ghost{background:#fff;color:var(--blue-d);border:2px solid var(--blue);}
   .btn.ghost:hover{background:var(--blue-bg);}
-  .vid{
     flex:1 1 100%;margin-top:6px;padding:14px;border:2px dashed var(--line);border-radius:10px;
     color:var(--soft);font-size:.92rem;text-align:center;background:#FBFDFE;
   }
-  .vid.ready{border-style:solid;border-color:var(--blue);padding:0;background:#000;}
-  .vid.ready iframe{width:100%;aspect-ratio:16/9;display:block;border:0;border-radius:8px;}
 
   /* ===== ルールバッジ ===== */
   .rule{
@@ -149,15 +148,17 @@
 <!-- ============ トップページ ============ -->
 <section id="top" class="page active">
   <p class="crumb">ホーム</p>
-  <p class="lead">クロッシオンの操作マニュアルのページです。ご自分の立場に合わせて、下から進んでください。各マニュアルには、操作の動画も順次追加していきます。</p>
+  <p class="lead">クロッシオンの操作マニュアルのページです。ご自分の立場に合わせて、下から進んでください。</p>
 
   <div class="cards">
     <a class="card" href="#" onclick="go('staff');return false;">
-      <div class="t">職員</div>
+      <div class="ico">🧑‍💼</div>
+      <div class="t">職員の方</div>
       <div class="d">申請をする方はこちら（常勤・パート）</div>
     </a>
     <a class="card" href="#" onclick="go('admin');return false;">
-      <div class="t">管理者</div>
+      <div class="ico">✅</div>
+      <div class="t">管理者の方</div>
       <div class="d">申請を承認する方はこちら</div>
     </a>
   </div>
@@ -171,42 +172,43 @@
   </table>
 
   <h2 class="sec"><span class="n">2</span>いつから変わるか</h2>
-  <p>次のスケジュールで、少しずつ切り替えていきます。</p>
+  <p>次のスケジュールで切り替えています。</p>
   <table>
     <tr><th style="width:22%">時期</th><th>内容</th></tr>
-    <tr><td class="k">6月1日〜</td><td>Web申請を開始します。<b>紙とWebの両方で申請</b>してください。Web申請に慣れていただく期間です。（給与への反映は<b>紙</b>）</td></tr>
-    <tr><td class="k">7月1日〜</td><td><b>紙とWebの両方で申請</b>してください。（給与への反映は<b>Web</b>）Web申請に一本化できるよう、紙とWebで誤差がないようにしてください。</td></tr>
-    <tr><td class="k">8月1日〜</td><td class="hl">Web申請に一本化します。打刻も新しい打刻機だけになります。</td></tr>
+    <tr><td class="k">7月（現在）</td><td><b>タイムカード申請が始まりました。</b>7月は<b>紙とWebの両方で申請</b>してください。慣れていただく期間です。（給与への反映は<b>紙</b>）</td></tr>
+    <tr><td class="k">8月1日〜</td><td class="hl"><b>Web申請に一本化します。</b>紙での申請は廃止し、給与計算もWeb申請の内容から行います。打刻も新しい打刻機だけになります。</td></tr>
   </table>
 
   <div class="note">
-    <div class="h">打刻について</div>
+    <div class="h">打刻について（とても大切です）</div>
     <p>今は「旧の打刻機」と「新しい打刻機」の2か所に打刻していただいています。</p>
-    <p><b>6月・7月</b>の間は、これまでどおり<b>2か所とも打刻</b>してください。</p>
+    <p><b>7月の間</b>は、これまでどおり<b>2か所とも打刻</b>してください。</p>
     <p><b>8月1日から</b>は、<b>新しい打刻機だけ</b>に打刻します（旧の打刻機は使いません）。</p>
   </div>
 
   <h2 class="sec"><span class="n">3</span>申請のルール</h2>
   <div class="rule">
     <div class="big">📌</div>
-    <div><b>各種申請は、翌勤務日の退勤時までに行ってください。</b><br>申請漏れや混乱を防ぐためのお願いです。忘れないうちに、早めの申請を心がけましょう。</div>
+    <div><b>各種申請は、翌勤務日中までに行ってください。</b><br>申請漏れや混乱を防ぐためのお願いです。忘れないうちに、早めの申請を心がけましょう。</div>
   </div>
 
   <h2 class="sec"><span class="n">4</span>準備していただくこと</h2>
-  <p>Web申請には、ログインが必要です。</p>
+  <p>Web申請には、ログインが必要です。次のものを総務課からお配りします。</p>
   <table>
     <tr><td class="k">ログインID</td><td>社員番号（6けた）</td></tr>
-    <tr><td class="k">パスワード</td><td>初回は、「J（大文字のジェイ）+職員番号（6桁）」（初回ログイン後に変更が必要です）</td></tr>
+    <tr><td class="k">パスワード</td><td>初回のパスワードをお配りします（初回ログイン後に変更が必要です）</td></tr>
   </table>
   <p>くわしい操作の方法は、下のボタンから自分のマニュアルをご覧ください。パソコンからも、スマートフォンからも申請できます。</p>
 
   <div class="cards">
     <a class="card" href="#" onclick="go('staff');return false;">
-      <div class="t">職員のマニュアル</div>
+      <div class="ico">🧑‍💼</div>
+      <div class="t">職員の方のマニュアル</div>
       <div class="d">常勤・パートの申請方法はこちら</div>
     </a>
     <a class="card" href="#" onclick="go('admin');return false;">
-      <div class="t">管理者のマニュアル</div>
+      <div class="ico">✅</div>
+      <div class="t">管理者の方のマニュアル</div>
       <div class="d">承認の方法はこちら</div>
     </a>
   </div>
@@ -218,65 +220,50 @@
 
 <!-- ============ 職員トップ ============ -->
 <section id="staff" class="page">
-  <p class="crumb"><a href="#" onclick="go('top');return false;">ホーム</a> ＞ 職員</p>
-  <h2 class="sec">職員（申請をする方）</h2>
+  <p class="crumb"><a href="#" onclick="go('top');return false;">ホーム</a> ＞ 職員の方</p>
+  <h2 class="sec">職員の方（申請をする方）</h2>
   <p class="lead">勤務の形態に合わせて、下から進んでください。</p>
   <div class="cards">
     <a class="card" href="#" onclick="go('joukin');return false;">
+      <div class="ico">🏢</div>
       <div class="t">常勤（正社員）の方</div>
-      <div class="d">ログイン・有給・未打刻・残業・夏期/特休・遅刻早退</div>
+      <div class="d">タイムカード申請の基本操作と、事由別の入力早見表</div>
     </a>
     <a class="card" href="#" onclick="go('part');return false;">
+      <div class="ico">🕒</div>
       <div class="t">パートの方</div>
-      <div class="d">ログイン・有給・未打刻・パート勤務/残業</div>
+      <div class="d">タイムカード申請の基本操作と、事由別の入力早見表</div>
     </a>
   </div>
   <div class="rule">
     <div class="big">📌</div>
-    <div><b>各種申請は、翌勤務日の退勤時までに行ってください。</b><br>申請漏れや混乱を防ぐためのお願いです。</div>
+    <div><b>各種申請は、翌勤務日中までに行ってください。</b><br>申請漏れや混乱を防ぐためのお願いです。</div>
   </div>
 </section>
 
 <!-- ============ 常勤 ============ -->
 <section id="joukin" class="page">
-  <p class="crumb"><a href="#" onclick="go('top');return false;">ホーム</a> ＞ <a href="#" onclick="go('staff');return false;">職員</a> ＞ 常勤の方</p>
+  <p class="crumb"><a href="#" onclick="go('top');return false;">ホーム</a> ＞ <a href="#" onclick="go('staff');return false;">職員の方</a> ＞ 常勤の方</p>
   <h2 class="sec">常勤（正社員）の方</h2>
-  <p class="lead">やりたいことのマニュアルを開いてください。各マニュアルには、操作の動画も順次追加していきます。</p>
+  <p class="lead">下のマニュアルを開いてください。</p>
 
   <div class="rule">
     <div class="big">📌</div>
-    <div><b>各種申請は、翌勤務日の退勤時までに。</b>申請漏れ・混乱を防ぐためのお願いです。</div>
+    <div><b>各種申請は、翌勤務日中までに。</b>申請漏れ・混乱を防ぐためのお願いです。</div>
   </div>
 
-  <!-- 各マニュアル: data-pdf にPDFファイル名、data-yt にYouTube IDを入れると動画が出ます -->
   <div id="joukin-list"></div>
 </section>
 
 <!-- ============ パート ============ -->
 <section id="part" class="page">
-  <p class="crumb"><a href="#" onclick="go('top');return false;">ホーム</a> ＞ <a href="#" onclick="go('staff');return false;">職員</a> ＞ パートの方</p>
+  <p class="crumb"><a href="#" onclick="go('top');return false;">ホーム</a> ＞ <a href="#" onclick="go('staff');return false;">職員の方</a> ＞ パートの方</p>
   <h2 class="sec">パートの方</h2>
-  <p class="lead">やりたいことのマニュアルを開いてください。各マニュアルには、操作の動画も順次追加していきます。</p>
-
-  <!-- ▼▼▼ 全体説明動画（パートさん向け） ▼▼▼ -->
-  <div class="man" style="border-color:var(--blue);border-width:2px;">
-    <div class="head" style="background:linear-gradient(135deg,var(--blue) 0%,var(--blue-d) 100%);color:#fff;border-left-color:var(--navy);">
-      🎥 まずはこちらをご覧ください（全体の流れ）
-    </div>
-    <div class="body">
-      <p style="flex:1 1 100%;margin:0 0 6px;font-size:.96rem;color:var(--ink);">
-        これまで紙で書いていた申請が、6月からクロッシオン（Web申請）に変わります。<br>
-        どんな仕組みで、どう変わるのか、最初にこの動画でご確認ください。
-      </p>
-      <!-- 動画ID を入れると自動表示されます。空のままなら「準備中」表示。 -->
-      <div class="vid" id="part-intro-video">🎬 全体説明の動画は準備中です（公開までお待ちください）</div>
-    </div>
-  </div>
-  <!-- ▲▲▲ 全体説明動画ここまで ▲▲▲ -->
+  <p class="lead">下のマニュアルを開いてください。</p>
 
   <div class="rule">
     <div class="big">📌</div>
-    <div><b>各種申請は、翌勤務日の退勤時までに。</b>申請漏れ・混乱を防ぐためのお願いです。</div>
+    <div><b>各種申請は、翌勤務日中までに。</b>申請漏れ・混乱を防ぐためのお願いです。</div>
   </div>
 
   <div id="part-list"></div>
@@ -284,14 +271,11 @@
 
 <!-- ============ 管理者 ============ -->
 <section id="admin" class="page">
-  <p class="crumb"><a href="#" onclick="go('top');return false;">ホーム</a> ＞ 管理者</p>
-  <h2 class="sec">管理者（承認をする方）</h2>
+  <p class="crumb"><a href="#" onclick="go('top');return false;">ホーム</a> ＞ 管理者の方</p>
+  <h2 class="sec">管理者の方（承認をする方）</h2>
   <p class="lead">申請を承認する方のためのマニュアルです。</p>
-  <div class="note">
-    <div class="h">準備中です</div>
-    <p>承認の方法のマニュアルは、現在準備中です。でき次第こちらに掲載します。</p>
-  </div>
-  <p>職員の申請は、管理者のページに届きます。申請が届いたら承認をお願いします。承認されないと申請が確定しませんので、日々ページを確認するなど、こまめにご確認ください。確認方法については、追ってご連絡いたします。</p>
+  <div id="admin-list"></div>
+  <p>職員の申請は、管理者のページに届きます。申請が届いたら承認をお願いします。承認されないと申請が確定しませんので、日々ページを確認するなど、こまめにご確認ください。</p>
 </section>
 
 <footer>
@@ -302,85 +286,65 @@
 </div>
 
 <script>
-  // ===== 全体説明動画（パートさん向け） =====
-  // ↓↓↓ YouTubeの限定公開動画IDをここに入れると、自動で動画が埋め込まれます ↓↓↓
-  // 例: const PART_INTRO_VIDEO_ID = "abc123XYZ";
-  // 空欄("")のままなら「準備中」表示のままです
-  const PART_INTRO_VIDEO_ID = "Oy5_uBc-iCo";
-
-  if (PART_INTRO_VIDEO_ID) {
-    const introEl = document.getElementById("part-intro-video");
-    introEl.className = "vid ready";
-    introEl.innerHTML = `<iframe src="https://www.youtube.com/embed/${PART_INTRO_VIDEO_ID}" allowfullscreen></iframe>`;
-  }
-
   // ===== マニュアル定義 =====
-  // pdf: 同じフォルダに置くPDFのファイル名 / yt: YouTube動画ID（空なら「準備中」表示）
+  // pdf: 同じフォルダに置くPDFのファイル名
   const JOUKIN = [
-    {title:"① ログイン方法",            pdf:"pdf/login.pdf",     yt:"rBCIpS2A848"},
-    {title:"② 有給休暇の申請",          pdf:"pdf/yukyu.pdf",     yt:""},
-    {title:"③ 未打刻の申請",            pdf:"pdf/midakoku.pdf",  yt:""},
-    {title:"④ 残業の申請",              pdf:"pdf/zangyo.pdf",    yt:""},
-    {title:"⑤ 夏期・特休の申請",        pdf:"pdf/kaki.pdf",      yt:""},
-    {title:"⑥ 遅刻・早退の申請",        pdf:"pdf/chikoku.pdf",   yt:""},
+    {title:"① ログイン方法", pdf:"login.pdf"},
+    {title:"② タイムカード申請マニュアル", desc:"基本操作と、事由別の入力早見表をまとめた1冊です。", pdf:"joukin.pdf"},
   ];
   const PART = [
-    {title:"① ログイン方法",            pdf:"pdf/login.pdf",     yt:"rBCIpS2A848"},
-    {title:"② 有給休暇の申請",          pdf:"pdf/yukyu.pdf",     yt:""},
-    {title:"③ 未打刻の申請",            pdf:"pdf/midakoku.pdf",  yt:""},
-    {title:"④ パート勤務・残業の申請",  pdf:"pdf/part.pdf",      yt:""},
+    {title:"① ログイン方法", pdf:"login.pdf"},
+    {title:"② タイムカード申請マニュアル", desc:"基本操作と、事由別の入力早見表をまとめた1冊です。", pdf:"part.pdf"},
+  ];
+  const KANRISHA = [
+    {title:"タイムカード申請の承認方法（承認者・上長用）", desc:"申請の承認・却下、内容の修正方法をまとめた1冊です。", pdf:"kanrisha.pdf"},
   ];
 
   function renderList(arr){
     return arr.map(m=>{
-      const vid = m.yt
-        ? `<div class="vid ready"><iframe src="https://www.youtube.com/embed/${m.yt}" allowfullscreen></iframe></div>`
-        : `<div class="vid">🎬 操作動画は準備中です（公開までお待ちください）</div>`;
       return `<div class="man">
         <div class="head">${m.title}</div>
         <div class="body">
+          ${m.desc?`<p class="desc">${m.desc}</p>`:""}
           <a class="btn" href="${m.pdf}" target="_blank">📄 マニュアルを開く</a>
           <a class="btn ghost" href="${m.pdf}" download>⬇ ダウンロード</a>
-          ${vid}
         </div>
       </div>`;
     }).join("");
   }
   document.getElementById("joukin-list").innerHTML = renderList(JOUKIN);
   document.getElementById("part-list").innerHTML   = renderList(PART);
+  document.getElementById("admin-list").innerHTML  = renderList(KANRISHA);
 
-  // ===== ページ切替（ブラウザの「←戻る」に対応） =====
-  function showPage(id, scroll){
+  // ページ表示だけを切り替える(履歴は積まない)内部関数
+  function showPage(id){
+    if(!document.getElementById(id)) id = "top";
     document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-    const target = document.getElementById(id);
-    if(target){
-      target.classList.add("active");
-    }else{
-      // 不明なIDのときはトップを表示
-      document.getElementById("top").classList.add("active");
-    }
-    if(scroll){ window.scrollTo({top:0,behavior:"smooth"}); }
+    document.getElementById(id).classList.add("active");
+    window.scrollTo({top:0,behavior:"smooth"});
   }
 
+  // リンククリック時: 表示を切り替え、履歴に積む(戻るボタン対応)
   function go(id){
-    // URLの末尾に #id を追加（履歴に残る）→ ブラウザの戻るボタンで戻れる
-    history.pushState({page:id}, "", "#"+id);
-    showPage(id, true);
+    showPage(id);
+    if(location.hash.slice(1) !== id){
+      history.pushState({page:id}, "", "#"+id);
+    }
   }
 
-  // 「←戻る」「→進む」が押されたとき
+  // 戻る/進むボタンが押されたとき: URLのハッシュに従って表示を戻す
   window.addEventListener("popstate", function(e){
-    const id = (e.state && e.state.page) || (location.hash ? location.hash.slice(1) : "top");
-    showPage(id, true);
+    const id = (e.state && e.state.page) ? e.state.page : (location.hash.slice(1) || "top");
+    showPage(id);
   });
 
-  // 初回表示：URLに #xxx があればそのページから開く（リロード対策）
+  // 初期表示: URLにハッシュがあればそのページ、なければトップ(直リンク・リロード対応)
   (function(){
-    const id = location.hash ? location.hash.slice(1) : "top";
-    showPage(id, false);
-    // 初期状態を履歴に登録
+    const id = location.hash.slice(1) || "top";
+    showPage(id);
     history.replaceState({page:id}, "", location.hash || "#top");
   })();
+
 </script>
 </body>
 </html>
